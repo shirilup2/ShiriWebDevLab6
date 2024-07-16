@@ -1,4 +1,4 @@
-/****************** YOUR NAME: 
+/****************** YOUR NAME: Shiri Lupovici
 
 The instructions describe the missing logic that is needed; you will translate these into JavaScript in the places indicated.
 
@@ -10,12 +10,22 @@ You are encouraged to use the provided naming convention for ease of review.
 /* create variables to hold the values for modelName and duration */
 
 // INSERT YOUR CODE HERE
+const XYZ_COST = 100;
+const CPRG_COST = 213;
 let modelName = "XYZ";
 let duration = 0;
-const inputBox = document.querySelector("#inputTxt");
+let totalCost = 0;
 
+const CalculatedCostText = document.getElementById("calculated-cost");
+const modelText = document.getElementById("model-text");
+const durationText = document.getElementById("duration-text");
+const modelButton = document.getElementById("model-button");
+const durationButton = document.getElementById("duration-button");
 
+durationButton.addEventListener("click", changeDuration);
+modelButton.addEventListener("click",changeModel);
 
+modelText.innerHTML = "Shiri";
 
 /****************** helper function ******************/
 /* create a function called recalculate() which will
@@ -28,22 +38,17 @@ const inputBox = document.querySelector("#inputTxt");
 */
 
 // INSERT YOUR CODE HERE
-let costLabel = document.getElementById("calculated-cost");
 
 function recalculate(){
     if (modelName === "XYZ")
     {
-
+        totalCost = XYZ_COST * duration;
     }
     else {
-        
+        totalCost = CPRG_COST * duration;
     }
+    CalculatedCostText.innerHTML = totalCost;
 }
-
-
-
-
-
 
 /****************** model button logic ******************/
 
@@ -58,12 +63,17 @@ function recalculate(){
     // modelButton.addEventListener("click", changeModel);
 
 // INSERT YOUR CODE HERE
-
-
-
-
-
-
+function changeModel(){
+    if (modelName === "XYZ")
+    {
+        modelName = "CPRG";
+    }
+    else{
+        modelName = "XYZ";
+    }
+    modelText.innerHTML = modelName;
+    recalculate();
+}
 
 /****************** duration button logic ******************/
 /*  - first, create a variable to represent the "Change Duration" pseudo-button.
@@ -77,6 +87,15 @@ function recalculate(){
 */
 
 // INSERT YOUR CODE HERE
+
+function changeDuration(){
+    let promptVal = prompt("Please enter the duration");
+    if (promptVal != null){
+        duration = promptVal;
+        durationText.innerHTML = duration;
+        recalculate();
+    }    
+}
 
 
 
